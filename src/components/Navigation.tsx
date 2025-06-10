@@ -10,6 +10,8 @@ const Navigation = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
+    { name: 'About', path: '/about' },
+    { name: 'Portfolio', path: '/portfolio' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -20,9 +22,9 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3">
               <img 
-                src="/lovable-uploads/c7f95474-efc4-461c-a4bf-21dc4d5b20f3.png" 
+                src="/lovable-uploads/89c9a56e-ed3b-48ff-a547-49e2c522d894.png" 
                 alt="Hustle Executive Logo" 
-                className="h-10 w-auto"
+                className="h-12 w-auto"
               />
               <span className="text-2xl font-bold text-primary hidden sm:block">
                 Hustle Executive

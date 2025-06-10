@@ -2,7 +2,7 @@
 import Navigation from '@/components/Navigation';
 import ServiceCard from '@/components/ServiceCard';
 import { serviceCategories } from '@/data/services';
-import { ArrowRight, CheckCircle, Mountain, Users, Award, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, Mountain, Users, Award, Clock, Star, Zap, Shield, HeartHandshake } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
@@ -17,9 +17,9 @@ const Index = () => {
           <div className="text-center">
             <div className="flex justify-center mb-8">
               <img 
-                src="/lovable-uploads/c7f95474-efc4-461c-a4bf-21dc4d5b20f3.png" 
+                src="/lovable-uploads/89c9a56e-ed3b-48ff-a547-49e2c522d894.png" 
                 alt="Hustle Executive Logo" 
-                className="h-24 w-auto drop-shadow-lg"
+                className="h-32 w-auto drop-shadow-lg"
               />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
@@ -71,7 +71,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Features Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -83,24 +83,32 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 title: "Expert Team",
-                description: "Skilled professionals with years of experience in cutting-edge technologies and business growth strategies."
+                description: "Skilled professionals with years of experience in cutting-edge technologies.",
+                icon: Star
               },
               {
-                title: "Quality Assurance",
-                description: "Rigorous testing and quality control processes ensure flawless deliverables that exceed expectations."
+                title: "Fast Delivery",
+                description: "Quick turnaround times without compromising on quality or attention to detail.",
+                icon: Zap
+              },
+              {
+                title: "Secure Solutions",
+                description: "Enterprise-grade security measures to protect your business and customer data.",
+                icon: Shield
               },
               {
                 title: "24/7 Support",
-                description: "Round-the-clock support to keep your business running smoothly and address any concerns promptly."
+                description: "Round-the-clock support to keep your business running smoothly and efficiently.",
+                icon: HeartHandshake
               }
             ].map((feature, index) => (
               <div key={index} className="text-center group">
                 <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                  <CheckCircle className="h-8 w-8 text-primary" />
+                  <feature.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
@@ -146,6 +154,56 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Don't just take our word for it - hear from our satisfied clients.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "John Smith",
+                company: "TechCorp Inc.",
+                testimonial: "Hustle Executive transformed our online presence completely. Their team is professional, responsive, and delivered beyond our expectations.",
+                rating: 5
+              },
+              {
+                name: "Sarah Johnson",
+                company: "StartupXYZ",
+                testimonial: "Working with Hustle Executive was a game-changer for our business. They helped us launch our app and scale our operations efficiently.",
+                rating: 5
+              },
+              {
+                name: "Mike Chen",
+                company: "Local Restaurant",
+                testimonial: "The team created an amazing website and branding for our restaurant. We've seen a 40% increase in online orders since the launch.",
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+                <div className="flex items-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-4 italic">"{testimonial.testimonial}"</p>
+                <div>
+                  <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                  <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 mountain-gradient mountain-texture text-white relative">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -169,13 +227,13 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
                 <img 
-                  src="/lovable-uploads/c7f95474-efc4-461c-a4bf-21dc4d5b20f3.png" 
+                  src="/lovable-uploads/89c9a56e-ed3b-48ff-a547-49e2c522d894.png" 
                   alt="Hustle Executive Logo" 
-                  className="h-8 w-auto"
+                  className="h-10 w-auto"
                 />
                 <span className="text-xl font-bold">Hustle Executive</span>
               </div>
@@ -188,12 +246,23 @@ const Index = () => {
               <ul className="space-y-2">
                 <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
                 <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
+                <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/portfolio" className="text-gray-400 hover:text-white transition-colors">Portfolio</Link></li>
                 <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
+              <h4 className="text-lg font-semibold mb-4">Services</h4>
+              <ul className="space-y-2">
+                <li><span className="text-gray-400">Web Development</span></li>
+                <li><span className="text-gray-400">Mobile Apps</span></li>
+                <li><span className="text-gray-400">AI Solutions</span></li>
+                <li><span className="text-gray-400">Digital Marketing</span></li>
+              </ul>
+            </div>
+            <div>
               <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-              <p className="text-gray-400">Ready to start your project?</p>
+              <p className="text-gray-400 mb-2">Ready to start your project?</p>
               <Link to="/contact" className="text-primary hover:text-primary/80 transition-colors">
                 Get in touch today
               </Link>
