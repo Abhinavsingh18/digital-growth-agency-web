@@ -22,18 +22,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
 const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error('Please add your MongoDB URI to .env');
-}
-
 const client = new MongoClient(uri);
 
 // Serve static files in production
@@ -41,78 +34,53 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../dist')));
 }
 
-// Test MongoDB connection
-async function testConnection() {
+// Connect to MongoDB
+async function connectToMongo() {
   try {
     await client.connect();
-    console.log('Successfully connected to MongoDB.');
-    const db = client.db(process.env.MONGODB_DB);
-    await db.command({ ping: 1 });
-    console.log('Database connection test successful.');
+    console.log('Connected to MongoDB');
   } catch (error) {
-    console.error('MongoDB connection test failed:', error);
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
   }
 }
 
-// Run connection test
-testConnection();
-
-// Contact form endpoint
+// API Routes
 app.post('/api/contact', async (req, res) => {
   try {
-    const { name, email, mobile, budget, message } = req.body;
-
-    // Validate required fields
-    if (!name || !email || !mobile || !budget || !message) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    // Connect to MongoDB
-    await client.connect();
+    const { name, email, message } = req.body;
     const db = client.db(process.env.MONGODB_DB);
-
-    // Insert the contact form submission
-    const result = await db.collection('contacts').insertOne({
+    const collection = db.collection('contacts');
+    
+    await collection.insertOne({
       name,
       email,
-      mobile,
-      budget,
       message,
-      createdAt: new Date(),
+      createdAt: new Date()
     });
-
-    return res.status(200).json({ 
-      message: 'Contact form submitted successfully',
-      id: result.insertedId 
-    });
+    
+    res.status(200).json({ message: 'Message sent successfully' });
   } catch (error) {
-    console.error('Error submitting contact form:', error);
-    return res.status(500).json({ message: 'Error submitting contact form' });
+    console.error('Error saving contact:', error);
+    res.status(500).json({ error: 'Failed to send message' });
   }
 });
 
-// Get all contacts endpoint
 app.get('/api/contacts', async (req, res) => {
   try {
-    // Simple auth check - in production use proper JWT
-    const authHeader = req.headers.authorization;
-    if (!authHeader || authHeader !== 'Bearer admin') {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
-    await client.connect();
     const db = client.db(process.env.MONGODB_DB);
-    
-    const contacts = await db.collection('contacts')
-      .find({})
-      .sort({ createdAt: -1 })
-      .toArray();
-
-    return res.status(200).json(contacts);
+    const collection = db.collection('contacts');
+    const contacts = await collection.find().sort({ createdAt: -1 }).toArray();
+    res.status(200).json(contacts);
   } catch (error) {
     console.error('Error fetching contacts:', error);
-    return res.status(500).json({ message: 'Error fetching contacts' });
+    res.status(500).json({ error: 'Failed to fetch contacts' });
   }
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
 
 // Serve index.html for all other routes in production
@@ -122,6 +90,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-}); 
+// Start server
+async function startServer() {
+  await connectToMongo();
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+startServer().catch(console.error); 
