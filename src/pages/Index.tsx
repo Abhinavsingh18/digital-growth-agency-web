@@ -1,4 +1,3 @@
-
 import Navigation from '@/components/Navigation';
 import ServiceCard from '@/components/ServiceCard';
 import { serviceCategories } from '@/data/services';
@@ -11,19 +10,35 @@ const Index = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="mountain-gradient mountain-texture text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/90">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+              <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2 animate-pulse delay-1000"></div>
+            </div>
+          </div>
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                             linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-8 relative">
+              <div className="absolute inset-0 bg-white/10 rounded-full blur-2xl transform scale-150 animate-pulse"></div>
               <img 
                 src="/lovable-uploads/89c9a56e-ed3b-48ff-a547-49e2c522d894.png" 
                 alt="Hustle Executive Logo" 
-                className="h-32 w-auto drop-shadow-lg"
+                className="h-32 w-auto drop-shadow-lg relative z-10"
               />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
-              Your Trusted IT Agency for{' '}
+            Simplifying Tech, Amplifying {' '}
               <span className="text-yellow-300">Digital Growth</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto drop-shadow">
@@ -54,9 +69,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "500+", label: "Projects Completed", icon: Award },
-              { number: "200+", label: "Happy Clients", icon: Users },
-              { number: "5+", label: "Years Experience", icon: Mountain },
+              { number: "50+", label: "Projects Completed", icon: Award },
+              { number: "20+", label: "Happy Clients", icon: Users },
+              { number: "2+", label: "Years Experience", icon: Mountain },
               { number: "24/7", label: "Support Available", icon: Clock }
             ].map((stat, index) => (
               <div key={index} className="group">
@@ -270,7 +285,7 @@ const Index = () => {
           </div>
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-400">
-              © 2024 Hustle Executive. All rights reserved.
+              © 2025 Hustle Executive. All rights reserved.
             </p>
           </div>
         </div>

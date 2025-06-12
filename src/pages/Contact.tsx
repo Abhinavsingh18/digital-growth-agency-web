@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import { useToast } from '@/hooks/use-toast';
@@ -11,6 +10,8 @@ interface FormData {
   budget: string;
   message: string;
 }
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -60,14 +61,23 @@ const Contact = () => {
     }
 
     try {
-      // Simulate API call - In a real app, this would connect to MongoDB
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log('Form submitted:', formData);
+      const response = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message');
+      }
       
       toast({
-        title: 'Message Sent!',
-        description: 'Thank you for your inquiry. We\'ll get back to you soon.',
+        title: 'Success!',
+        description: 'Your message has been sent successfully. We\'ll get back to you soon.',
       });
       
       // Reset form
@@ -79,9 +89,10 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
         title: 'Error',
-        description: 'Failed to send message. Please try again.',
+        description: error instanceof Error ? error.message : 'Failed to send message. Please try again.',
         variant: 'destructive'
       });
     } finally {
@@ -133,7 +144,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+91 </p>
                   </div>
                 </div>
                 
@@ -143,7 +154,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Office</h3>
-                    <p className="text-gray-600">123 Business Street<br />Tech City, TC 12345</p>
+                    <p className="text-gray-600">Gwalior<br />M.P., 474001</p>
                   </div>
                 </div>
               </div>
@@ -153,7 +164,7 @@ const Contact = () => {
                   Why Choose Us?
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• Expert team with 10+ years experience</li>
+                  <li>• Expert team with 2+ years experience</li>
                   <li>• 24/7 customer support</li>
                   <li>• Competitive pricing</li>
                   <li>• On-time delivery guaranteed</li>
@@ -226,11 +237,11 @@ const Contact = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                   >
                     <option value="">Select your budget range</option>
-                    <option value="under-5k">Under $5,000</option>
-                    <option value="5k-10k">$5,000 - $10,000</option>
-                    <option value="10k-25k">$10,000 - $25,000</option>
-                    <option value="25k-50k">$25,000 - $50,000</option>
-                    <option value="over-50k">Over $50,000</option>
+                    <option value="under-5k">Under 5,000</option>
+                    <option value="5k-10k">5,000 - 10,000</option>
+                    <option value="10k-25k">10,000 - 25,000</option>
+                    <option value="25k-50k">25,000 - 50,000</option>
+                    <option value="over-50k">Over 50,000</option>
                   </select>
                 </div>
 
@@ -273,7 +284,7 @@ const Contact = () => {
       <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-400">
-            © 2024 TechFlow Agency. All rights reserved.
+            © 2025 Hustle Executive. All rights reserved.
           </p>
         </div>
       </footer>
