@@ -11,9 +11,7 @@ interface FormData {
   message: string;
 }
 
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://hustle-execuitive.onrender.com'
-  : 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 const Contact = () => {
   const { toast } = useToast();
