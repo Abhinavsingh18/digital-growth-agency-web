@@ -13,7 +13,7 @@ interface Contact {
   createdAt: string;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || 'https://hustle-execuitive.onrender.com';
 
 const Admin = () => {
   const { toast } = useToast();
