@@ -11,7 +11,9 @@ interface FormData {
   message: string;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://hustle-execuitive.onrender.com'
+  : 'http://localhost:3001';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -61,20 +63,37 @@ const Contact = () => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/contact`, {
+      console.log('Sending request to:', `${API_URL}/contacts`);
+      console.log('Request payload:', formData);
+
+      const response = await fetch(`${API_URL}/contacts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(formData),
+        mode: 'cors',
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.mobile,
+          budget: formData.budget,
+          message: formData.message
+        }),
       });
 
-      const data = await response.json();
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to send message');
+        const errorText = await response.text();
+        console.error('Server error response:', errorText);
+        throw new Error(`Server error: ${response.status} - ${errorText}`);
       }
-      
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
       toast({
         title: 'Success!',
         description: 'Your message has been sent successfully. We\'ll get back to you soon.',

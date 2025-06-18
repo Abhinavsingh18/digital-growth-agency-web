@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, LogOut } from 'lucide-react';
@@ -17,7 +16,6 @@ interface Contact {
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 const Admin = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
@@ -60,19 +58,21 @@ const Admin = () => {
   const fetchContacts = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_URL}/api/contacts`, {
-        headers: {
-          'Authorization': 'Bearer admin' // Simple auth - in production use proper JWT
-        }
-      });
+      console.log('Fetching contacts from:', `${API_URL}/contacts`);
+      
+      const response = await fetch(`${API_URL}/contacts`);
+      
+      console.log('Response status:', response.status);
       
       if (!response.ok) {
         throw new Error('Failed to fetch contacts');
       }
 
       const data = await response.json();
+      console.log('Fetched contacts:', data);
       setContacts(data);
     } catch (error) {
+      console.error('Error fetching contacts:', error);
       toast({
         title: 'Error',
         description: 'Failed to fetch contacts',

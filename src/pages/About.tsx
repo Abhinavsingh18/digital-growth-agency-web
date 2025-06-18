@@ -1,6 +1,5 @@
-
 import Navigation from '@/components/Navigation';
-import { Users, Target, Award, Clock, CheckCircle, Heart } from 'lucide-react';
+import { Target, Award, Heart } from 'lucide-react';
 
 const About = () => {
   const teamMembers = [
@@ -45,11 +44,6 @@ const About = () => {
       icon: Award,
       title: "Excellence",
       description: "We deliver high-quality results that exceed expectations."
-    },
-    {
-      icon: CheckCircle,
-      title: "Reliability",
-      description: "Consistent delivery and dependable support you can count on."
     }
   ];
 

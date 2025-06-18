@@ -1,7 +1,7 @@
 import Navigation from '@/components/Navigation';
 import ServiceCard from '@/components/ServiceCard';
 import { serviceCategories } from '@/data/services';
-import { ArrowRight, CheckCircle, Mountain, Users, Award, Clock, Star, Zap, Shield, HeartHandshake } from 'lucide-react';
+import { ArrowRight, Mountain, Award, Star, Zap, Shield, HeartHandshake } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
@@ -70,9 +70,9 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { number: "50+", label: "Projects Completed", icon: Award },
-              { number: "20+", label: "Happy Clients", icon: Users },
+              { number: "20+", label: "Happy Clients", icon: Mountain },
               { number: "2+", label: "Years Experience", icon: Mountain },
-              { number: "24/7", label: "Support Available", icon: Clock }
+              { number: "24/7", label: "Support Available", icon: Mountain }
             ].map((stat, index) => (
               <div key={index} className="group">
                 <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">

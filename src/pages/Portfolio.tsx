@@ -1,4 +1,3 @@
-
 import Navigation from '@/components/Navigation';
 import { ExternalLink, Github } from 'lucide-react';
 
@@ -59,8 +58,6 @@ const Portfolio = () => {
       githubUrl: "#"
     }
   ];
-
-  const categories = ["All", "Web Development", "Mobile App", "AI Solution", "Branding", "Web Design", "Business Software"];
 
   return (
     <div className="min-h-screen bg-gray-50">
