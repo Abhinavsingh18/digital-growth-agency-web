@@ -12,6 +12,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
