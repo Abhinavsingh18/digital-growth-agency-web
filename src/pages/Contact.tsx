@@ -151,7 +151,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">hello@techflowagency.com</p>
+                    <p className="text-gray-600">officialhustleexecutive@gmail.com
+                    </p>
                   </div>
                 </div>
                 
@@ -173,6 +174,22 @@ const Contact = () => {
                     <h3 className="text-lg font-semibold text-gray-900">Office</h3>
                     <p className="text-gray-600">Gwalior<br />M.P., 474001</p>
                   </div>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Connect with us
+                </h3>
+                <div className="flex space-x-6">
+                  <a href="https://www.instagram.com/hustleexecutive/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 flex items-center gap-2">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg>
+                    Instagram
+                  </a>
+                  <a href="https://linkedin.com/company/hustle-executive/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 flex items-center gap-2">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+                    LinkedIn
+                  </a>
                 </div>
               </div>
 
@@ -254,11 +271,11 @@ const Contact = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                   >
                     <option value="">Select your budget range</option>
-                    <option value="under-5k">Under 5,000</option>
-                    <option value="5k-10k">5,000 - 10,000</option>
-                    <option value="10k-25k">10,000 - 25,000</option>
-                    <option value="25k-50k">25,000 - 50,000</option>
-                    <option value="over-50k">Over 50,000</option>
+                    <option value="under-5k">10,000 - 15,000</option>
+                    <option value="5k-10k">15,000 - 25,000</option>
+                    <option value="10k-25k">25,000 - 50,000</option>
+                    <option value="25k-50k">50,000 - 1,50,000</option>
+                    <option value="over-50k">Over 1,50,000</option>
                   </select>
                 </div>
 
